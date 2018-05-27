@@ -16,10 +16,24 @@ Route::get('/', function () {
 });
 
 
-Route::get('about', function () {
-	$test_db = DB::table('tasks')->get();
+Route::get('/about', function () {
+    return view('about', [
+    	'name' => 'Investing' // тестирование передачи масисва переменных в вьюху
+    ]);
+});
 
-    return view('about', compact('test_db'));
+
+Route::get('/tasks', function () {
+	$tasks = DB::table('tasks')->get();
+
+    return view('tasks.index', compact('tasks'));
+});
+
+
+Route::get('/tasks/{task}', function ($id) {
+	$task = DB::table('tasks')->find($id);
+
+    return view('tasks.show', compact('task'));
 });
 
 Auth::routes();

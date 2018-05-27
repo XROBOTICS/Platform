@@ -80,7 +80,11 @@
             <div class="content">
                 <div class="title m-b-md">
                     @foreach ($tasks as $task)
-                        <li> {{ $task->body }}</li>
+                        <li> 
+                            <a href="/Platform/Invest/tasks/{{ $task->id }}"> 
+                            {{ $task->body }}
+                            </a>
+                        </li>
                     @endforeach
                 </div>
 

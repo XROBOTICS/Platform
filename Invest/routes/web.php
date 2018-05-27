@@ -17,7 +17,9 @@ Route::get('/', function () {
 
 
 Route::get('about', function () {
-    return view('about');
+	$test_db = DB::table('tasks')->get();
+
+    return view('about', compact('test_db'));
 });
 
 Auth::routes();

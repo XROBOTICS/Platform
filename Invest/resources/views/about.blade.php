@@ -68,7 +68,9 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    About 
+                    @foreach ($test_db as $task)
+                        <li>{{ $task->body }} </li>
+                    @endforeach
                 </div>
             </div>
         </div>

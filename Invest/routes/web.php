@@ -31,7 +31,7 @@ Route::get('/tasks', function () {
 
 
 Route::get('/tasks/{task}', function ($id) {
-	$task = DB::table('tasks')->find($id);
+	$task = DB::table('tasks')->find($id);		//передаем в адресную строку id 
 
     return view('tasks.show', compact('task'));
 });
@@ -39,3 +39,5 @@ Route::get('/tasks/{task}', function ($id) {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('profile', 'ProfileController@index');

@@ -16,28 +16,34 @@ Route::get('/', function () {
 });
 
 
-Route::get('/about', function () {
-    return view('about', [
-    	'name' => 'Investing' // тестирование передачи масисва переменных в вьюху
-    ]);
-});
+// Route::get('/about', function () {
+//     return view('about', [
+//     	'name' => 'Investing' // тестирование передачи масисва переменных в вьюху
+//     ]);
+// });
 
 
-Route::get('/tasks', function () {
-	$tasks = DB::table('tasks')->get();
+// Route::get('/tasks', function () {
+// 	$tasks = DB::table('tasks')->get();
 
-    return view('tasks.index', compact('tasks'));
-});
+//     return view('tasks.index', compact('tasks'));
+// });
 
 
-Route::get('/tasks/{task}', function ($id) {
-	$task = DB::table('tasks')->find($id);		//передаем в адресную строку id 
+// Route::get('/tasks/{task}', function ($id) {
+// 	$task = DB::table('tasks')->find($id);		//передаем в адресную строку id 
 
-    return view('tasks.show', compact('task'));
-});
+//     return view('tasks.show', compact('task'));
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('profile', 'ProfileController@index');
+Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('/home', 'HomeController@index')->name('home');
+
+	Route::get('profile', 'ProfileController@index');
+});
+
+
